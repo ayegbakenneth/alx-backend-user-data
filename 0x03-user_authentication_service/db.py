@@ -57,3 +57,16 @@ class DB:
             return user
         except (InvalidRequestError, NoResultFound):
             raise
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """ A method that update users attributes in the db """
+        try:
+            user = self.find_user_by(id=user_id)
+            for key, value in kwargs.items():
+                if not hasattr(user, key):
+                    raise ValueError(f"Attribute {key} not found on User")
+                setattr(user, key, value)
+            self._session.commit()
+
+        except (InvalidRequestError, NoResultFound):
+            raise
