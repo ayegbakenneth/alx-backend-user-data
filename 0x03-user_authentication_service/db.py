@@ -46,3 +46,14 @@ class DB:
             self._session.rollback()
             raise
         return new_user
+
+    def find_user_by(self, **kwargs) -> User:
+        # A method that find a user from the  db
+        try:
+            # Query using filter_by with provided kwargs
+            user = self._session.query(User).filter_by(**kwargs).first()
+            if user is None:
+                raise NoResultFound
+            return user
+        except (InvalidRequestError, NoResultFound):
+            raise
