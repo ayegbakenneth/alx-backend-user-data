@@ -21,7 +21,7 @@ class Auth:
     def __init__(self):
         self._db = DB()
 
-    def register_user(email: str, password: str) -> User:
+    def register_user(self, email: str, password: str) -> User:
         """ A method that returns a user object
         after recieving the login credentials """
         try:
@@ -29,7 +29,7 @@ class Auth:
             raise ValueError(f"User {email} already exists")
         except NoResultFound:
             pass
-        user_password = _hash_password(password)
-        user = User(email=email, user_password=user_password)
+        hashed_password = _hash_password(password)
+        user = User(email=email, hashed_password=hashed_password)
         self._db.add_user(user)
         return user
