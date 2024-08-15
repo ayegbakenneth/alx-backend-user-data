@@ -26,7 +26,7 @@ class Auth:
         after recieving the login credentials """
 
         if self._db.find_user_by(email=email):
-            raise ValueError("User <user's email> already exists")
+            raise ValueError(f"User {email} already exists")
         user_password = _hash_password(password)
         user = User(email=email, user_password=user_password)
         self._db.add_user(user)
