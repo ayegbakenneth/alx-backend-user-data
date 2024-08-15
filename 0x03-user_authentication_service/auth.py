@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """ File executable path """
-
+from db import DB
+from user import User
+from sqlalchemy.orm.exc import NoResultFound
 import bcrypt
 """ Module importation path """
 
