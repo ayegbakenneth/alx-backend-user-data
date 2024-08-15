@@ -9,6 +9,6 @@ def _hash_password(password: str) -> bytes:
     """ A method  that takes in a password
     string arguments and returns bytes. """
     encoded_password = password.encode('utf-8')
-    salt = bcryt.gensalt()
-    password_hashed = bcryt.hashpw(encoded_password, salt)
+    salt = bcrypt.gensalt()
+    password_hashed = bcrypt.hashpw(encoded_password, salt)
     return password_hashed
