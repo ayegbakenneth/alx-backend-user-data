@@ -24,9 +24,11 @@ class Auth:
     def register_user(email: str, password: str) -> User:
         """ A method that returns a user object
         after recieving the login credentials """
-
-        if self._db.find_user_by(email=email):
+        try:
+            self._db.find_user_by(email=email)
             raise ValueError(f"User {email} already exists")
+        except NoResultFound:
+            pass
         user_password = _hash_password(password)
         user = User(email=email, user_password=user_password)
         self._db.add_user(user)
