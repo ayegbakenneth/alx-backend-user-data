@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """ File executable path """
 
+from uuid import uuid4
 from typing import Union
 from db import DB
 from user import User
