@@ -41,7 +41,7 @@ class Auth:
         """ An Auth.valid_login method """
         try:
             user = self._db.find_user_by(email=email)
-            if user:
+            if user not None:
                 hashed_password = user.hashed_password
                 entered_password = password.encode("utf-8")
                 if bcrypt.checkpw(entered_password, hashed_password)
