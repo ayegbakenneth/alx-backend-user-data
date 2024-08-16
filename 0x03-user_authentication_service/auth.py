@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """ File executable path """
+from typing import Union
 from db import DB
 from user import User
 from sqlalchemy.orm.exc import NoResultFound
@@ -40,7 +41,7 @@ class Auth:
         """ An Auth.valid_login method """
         user = self._db.find_user_by(email=email)
         if user:
-            hashed_password = user.hashed_password.encode("utf-8")
+            hashed_password = user.hashed_password
             entered_password = password.encode("utf-8")
             if bcrypt.checkpw(entered_password, hashed_password)
             return True
