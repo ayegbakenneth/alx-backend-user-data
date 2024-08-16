@@ -39,11 +39,13 @@ class Auth:
 
     def valid_login(self, email: str, password: str) -> bool:
         """ An Auth.valid_login method """
-        user = self._db.find_user_by(email=email)
-        if user:
-            hashed_password = user._hashed_password
-            entered_password = password.encode("utf-8")
-            if bcrypt.checkpw(entered_password, hashed_password)
-            return True
-
+        try:
+            user = self._db.find_user_by(email=email)
+            if user:
+                hashed_password = user._hashed_password
+                entered_password = password.encode("utf-8")
+                if bcrypt.checkpw(entered_password, hashed_password)
+                return True
+        except NoResultFound:
+            return False
         return False
