@@ -2,7 +2,7 @@
 """ File  executable path """
 
 from auth import Auth
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 """ Module importation path """
 
 
@@ -19,6 +19,9 @@ def index() -> str:
 def users():
     """ a users function that implements
     the POST /users route."""
+    email = request.form.get('email')
+    password = request.form.get('password')
+
     try:
         Auth.register_user(email, password)
         return jsonify({"email": email, "message": "user created"})
