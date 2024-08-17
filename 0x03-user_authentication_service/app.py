@@ -3,7 +3,7 @@
 
 import logging
 from auth import Auth
-from flask import Flask, jsonify, request, redirect, abort
+from flask import Flask, jsonify, request, redirect, abort, make_response
 """ Module importation path """
 
 
@@ -39,10 +39,9 @@ def login() -> str:
     if not AUTH.valid_login(email, password):
         abort(401)
     session_id = AUTH.create_session(email)
-    server_response = jsonify(
-            {"email": email, "message": "logged in"})
-    server_response.set_cookie("session_id", session_id)
-    return server_response
+    response = jsonify({"email": email, "message": "logged in"})
+    response.set_cookie("session_id", session_id)
+    return response
 
 
 if __name__ == ("__main__"):
