@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """ File  executable path """
 
+import logging
 from auth import Auth
-from flask import Flask, jsonify, request, redirect
+from flask import Flask, jsonify, request, redirect, abort
 """ Module importation path """
 
 
